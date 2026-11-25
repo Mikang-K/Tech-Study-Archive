@@ -1,0 +1,62 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "**/*.qmd"
+    - "!presentations/**"
+
+website:
+  title: "GPU Scheduling & Orchestration"
+  description: "GPU 실행 환경부터 클러스터 자원 관리와 시스템 설계까지 기록하는 개인 학습 아카이브"
+  sidebar:
+    title: "GPU Orchestration"
+    style: docked
+    search: true
+    contents:
+      - href: index.qmd
+        text: 학습 소개
+      - href: roadmap.qmd
+        text: 전체 학습 로드맵
+      - section: "Phase 1. GPU 실행 환경"
+        contents:
+          - href: roadmap.qmd#chapter-01
+            text: "01. GPU와 딥러닝 실행 환경"
+          - href: roadmap.qmd#chapter-02
+            text: "02. 컨테이너 기반 GPU 실행"
+      - section: "Phase 2. 인프라와 자원 관리"
+        contents:
+          - href: roadmap.qmd#chapter-03
+            text: "03. Kubernetes 아키텍처"
+          - href: roadmap.qmd#chapter-04
+            text: "04. Kubernetes GPU 관리"
+      - section: "Phase 3. 자원 활용 최적화"
+        contents:
+          - href: roadmap.qmd#chapter-05
+            text: "05. GPU 공유 및 격리"
+          - href: roadmap.qmd#chapter-06
+            text: "06. GPU 스케줄링"
+      - section: "Phase 4. 연구와 시스템 설계"
+        contents:
+          - href: roadmap.qmd#chapter-07
+            text: "07. 딥러닝 스케줄링 논문"
+          - href: roadmap.qmd#chapter-08
+            text: "08. GPU 오케스트레이션 시스템 설계"
+
+lang: ko
+bibliography: reference.bib
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: ../../styles.css
+    embed-resources: true
+    toc: true
+    toc-depth: 3
+    toc-title: "목차"
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    link-citations: true
+    smooth-scroll: false

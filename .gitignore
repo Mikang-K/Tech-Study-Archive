@@ -18,3 +18,4 @@ Thumbs.db
 #ETC
 /docs/
 **/*.quarto_ipynb
+/mockups/
