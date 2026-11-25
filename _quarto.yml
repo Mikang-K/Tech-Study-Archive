@@ -1,21 +1,21 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "**/*.qmd"
 
 website:
   title: "Technical Study Archive"
 
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: roadmap.qmd
-        text: Roadmap
-
   sidebar:
+    title: "Technical Study Archive"
     style: docked
     search: true
-    contents: auto
+    contents:
+      - href: index.qmd
+        text: 홈
+      - href: roadmap.qmd
+        text: 학습 로드맵
 
 lang: ko
 
@@ -31,4 +31,4 @@ format:
     number-sections: true
     code-copy: true
     code-overflow: wrap
-    smooth-scroll: true
+    smooth-scroll: false

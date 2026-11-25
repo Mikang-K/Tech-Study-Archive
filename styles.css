@@ -1,1 +1,63 @@
-/* css styles */
+:root {
+  --archive-accent: #255c78;
+  --archive-muted: #52616d;
+  --archive-surface: #f1f5f7;
+  --archive-rule: #cbd8df;
+}
+
+body.quarto-dark {
+  --archive-accent: #92c7e3;
+  --archive-muted: #bac8d2;
+  --archive-surface: #253039;
+  --archive-rule: #526574;
+}
+
+body {
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+#quarto-document-content {
+  max-width: 52rem;
+  min-width: 0;
+  width: 100%;
+  margin-inline: auto;
+  padding-bottom: 3rem;
+}
+
+.navbar { border-bottom: 1px solid var(--archive-rule); }
+.navbar-title { font-size: 1.05rem; font-weight: 600; }
+h1, h2, h3 {
+  line-height: 1.45;
+  letter-spacing: -.025em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+h1.title { font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.65rem); margin-bottom: 1.25rem; }
+h2 { margin-top: 2.8rem; }
+h3 { margin-top: 2rem; font-size: 1.25rem; }
+.archive-intro, .roadmap-intro { color: var(--archive-muted); margin-bottom: 2.5rem; }
+.archive-intro p:first-child { color: var(--bs-body-color); font-size: 1.25rem; }
+.study-feature { padding: .25rem 0 .25rem 1.5rem; border-left: 4px solid var(--archive-accent); }
+.study-feature h3 { margin-top: .5rem; }
+.study-feature > p:last-child { color: var(--archive-muted); font-size: .95rem; }
+.study-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-block: 1.5rem; }
+.study-links p { display: contents; }
+.study-links .btn { white-space: normal; padding: .65rem 1rem; }
+.phase-map { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; margin-block: 1.5rem; }
+.phase-block { min-width: 0; padding: 1rem 0; border-top: 3px solid var(--archive-accent); }
+.phase-block h3 { margin: 0 0 1rem; font-size: 1.1rem; }
+.phase-block p { margin-bottom: .6rem; }
+.future-scope { background: var(--archive-surface); padding: .5rem 1.5rem 1rem; }
+a { text-underline-offset: .2em; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--archive-accent); outline-offset: 4px; }
+table { font-size: .95rem; }
+th, td { overflow-wrap: anywhere; }
+code, pre { font-family: Consolas, "Cascadia Code", monospace; }
+@media (max-width: 640px) {
+  .phase-map { grid-template-columns: 1fr; }
+  .study-feature { padding-left: 1rem; }
+  .future-scope { padding-inline: 1rem; }
+  body { font-size: 1rem; }
+}
