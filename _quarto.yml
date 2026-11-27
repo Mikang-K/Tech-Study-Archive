@@ -16,6 +16,14 @@ website:
         text: 홈
       - href: roadmap.qmd
         text: 학습 로드맵
+      - section: "GPU Scheduling & Orchestration"
+        contents:
+          - href: topics/GPU-Orchestration/index.qmd
+            text: 학습 소개
+          - href: topics/GPU-Orchestration/roadmap.qmd
+            text: 전체 학습 계획
+          - href: topics/GPU-Orchestration/chapters/01-gpu-fundamentals.qmd
+            text: "01. GPU와 딥러닝 실행 환경"
 
 lang: ko
 
