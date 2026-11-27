@@ -1,0 +1,55 @@
+---
+title: "GPU와 딥러닝 실행 환경"
+description: "GPU 하드웨어와 소프트웨어 실행 구조"
+number-sections: true
+toc: true
+---
+
+# 1.1 CPU와 GPU의 하드웨어 아키텍처
+
+![CPU와 GPU의 하드웨어 구조 비교](../assets/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-11-27%20161152.png){#fig-cpu-gpu fig-align="center"}
+
+## Latency와 Throughput
+
+|**구분**|**Latency(지연시간)**|**Throughput(처리량)**|
+|---|---|---|
+|의미|하나의 작업을 완료하는 데 걸리는 시간|단위 시간당 완료하는 작업의 양|
+|최적화 방향|작을수록 좋음|클수록 좋음|
+|대표 단위|ms, sec|requests/s, tokens/s|
+|LLM 서비스 사례|사용자 요청에 대한 응답 시간|초당 생성하는 전체 토큰 수|
+
+## 메모리 지연시간 처리 방식
+### 1. Latency Reduction
+캐시를 사용해 메모리 접근 시간을 줄이고, 비순차 실행 등을 통해 기다리는 동안 다른 명령어 수행
+![Latency Reduction](../assets/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-11-27%20174821.png){#fig-latency-reduction fig-align="center"}
+
+### 2. Latency Hiding
+동시에 실행할 수 있는 많은 스레드를 활요해 메모리 지연시간을 숨김
+![Latency Hiding](../assets/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-11-27%20175019.png){#fig-latency-hiding fig-align="center"}
+
+## 딥러닝에 GPU가 유리한 이유
+행렬 곱셉의 각 출력 원소는 독립적으로 계산 가능, 많은 연산 필요
+= 병렬로 다수의 독립 연산이 가능한 GPU가 전반적으로 유리함.
+![Matrixs](../assets/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-11-27%20175338.png){#fig-matrix fig-align="center"}
+
+
+## GPU 자원 관리
+![GPU resource](../assets/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-11-27%20180103.png){#fig-gpu-resource fig-align="center"}
+ - GPU를 할당했다는 것이 모든 연산 자원을 사용하고 있다는 의미인가?
+ - VRAM이 남아있다면 다른 작업을 함께 실행할 수 있는가?
+ - 연산 자원이 남아 있어도 VRAM이 부족하다면 어떻게 해야 하는가?
+ - 여러 작업을 동시에 실행하면 서로의 성능에 어떤 영향을 주는가?
+
+## GPU 오케스트레이션
+
+### 자원 활용률과 격리 사이의 Trade-off
+![Orchestration](../assets/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-11-27%20175652.png){#fig-trade-off fig-align="center"}
+
+|비교 항목|독점 할당|단순 공유|
+|---|---|---|
+|자원 활용 가능성|상대적으로 낮음|높음|
+|성능 예측 가능성|높음|낮음|
+|자원 경합|적음|발생 가능|
+|장애 영향 범위|상대적으로 좁음|넓어질 수 있음|
+|관리 복잡도|낮음|높음|
+|사용자당 비용 절감 가능성|낮음|높음|
